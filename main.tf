@@ -132,12 +132,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 }
 resource "null_resource" "cache-invalidate" {
   provisioner "local-exec" {
-    command = "aws cloudfront create-invalidation --distribution-id E146LF2IKNT4C1 --paths "/*""
+    command = "aws cloudfront create-invalidation --distribution-id E146LF2IKNT4C1 --paths /*"
   }
 }
-
-module "cloudfront_invalidation" {
-  source = "github.com/dirt-simple/terraform-aws-cloudfront-invalidation"
-}
-
-
