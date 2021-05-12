@@ -6,13 +6,13 @@ data "archive_file" "lambda_zip" {
 }
 
 resource "aws_lambda_function" "cloudfront_lambda" {
-  filename      = "lambda_function.zip"
-  function_name = "cloudfront_lambda"
-  role          = aws_iam_role.iam_for_lambda_tf.arn
-  handler       = "index.handler"
-  #source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-  runtime = "nodejs12.x"
-  publish = true
+  filename         = "lambda_function.zip"
+  function_name    = "cloudfront_lambda"
+  role             = aws_iam_role.iam_for_lambda_tf.arn
+  handler          = "index.handler"
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  runtime          = "nodejs12.x"
+  publish          = true
 }
 
 resource "aws_iam_role" "iam_for_lambda_tf" {
